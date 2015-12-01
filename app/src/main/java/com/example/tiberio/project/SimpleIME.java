@@ -98,7 +98,6 @@ public class SimpleIME extends InputMethodService
         if (AllCombinations.size() == 0) {
             AllCombinations.add("");
         }
-        ArrayList<String> temp_newAllcombinations = new ArrayList<>();
         switch (primaryCode) {
             case Keyboard.KEYCODE_DELETE:
                 ClearSugestions();
@@ -110,6 +109,10 @@ public class SimpleIME extends InputMethodService
                 break;
             default:
                 char code = (char) primaryCode; //converting from ascii (int) to char.
+                if(primaryCode==35){
+                    candidateview.getNextCandidates();
+                    return;
+                }
                 if ((!Character.isDigit(primaryCode))) { //if is not digit, just display it.
                     inputconnection.commitText(String.valueOf(code), 1);
                     ClearSugestions();

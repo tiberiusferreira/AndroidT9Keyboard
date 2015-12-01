@@ -23,6 +23,7 @@ public class CandidateView extends View {
     private Drawable mSelectionHighlight;
     private int mColorNormal;
     private int mVerticalPadding;
+    private int currentCandidatesPage = 1;
     private Paint mPaint;
     private SimpleIME mService;
 
@@ -77,13 +78,29 @@ public class CandidateView extends View {
     }
 
     public void updateSugestions(int typed_number){
+        currentCandidatesPage=1;
         Candidates=sugestionsgenerator.updateSugestions(typed_number);
         this.invalidate();
+    }
+
+    public void getNextCandidates(){
+        if(Candidates.size()<4){
+            currentCandidatesPage=1;
+            return;
+        }
+        if(currentCandidatesPage*3<Candidates.size()){
+            currentCandidatesPage++;
+            invalidate();
+        }else{
+            currentCandidatesPage=1;
+            invalidate();
+        }
     }
 
     public void ClearCandidates(){
         /*Clears the candidates, makes sure it's not empty
         * and triggers a redraw with invalidade.*/
+        currentCandidatesPage=1;
         sugestionsgenerator.clearSugestion();
         Candidates.clear();
         Candidates.add("");
@@ -121,10 +138,16 @@ public class CandidateView extends View {
     protected void onDraw(Canvas canvas) {
         if (canvas != null) {
             super.onDraw(canvas);
+            if(Candidates.size()<currentCandidatesPage*3){
+                Candidates.add("");
+                Candidates.add("");
+            }else if(Candidates.size()<currentCandidatesPage*3+1) {
+                Candidates.add("");
+            }
 
-            canvas.drawText(Candidates.get(0), ((getWidth()/3)-a)/2, (((getHeight() - mPaint.getTextSize()) / 2) - mPaint.ascent()), mPaint);
-            canvas.drawText(Candidates.get(1),getWidth()/3+((getWidth()/3)-a)/2 ,  (((getHeight() - mPaint.getTextSize()) / 2) - mPaint.ascent()), mPaint);
-            canvas.drawText(Candidates.get(2),2*getWidth()/3+((getWidth()/3)-a)/2 ,  (((getHeight() - mPaint.getTextSize()) / 2) - mPaint.ascent()), mPaint);
+            canvas.drawText(Candidates.get(3*(currentCandidatesPage-1)), ((getWidth()/3)-a)/2, (((getHeight() - mPaint.getTextSize()) / 2) - mPaint.ascent()), mPaint);
+            canvas.drawText(Candidates.get(3*(currentCandidatesPage-1)+1),getWidth()/3+((getWidth()/3)-a)/2 ,  (((getHeight() - mPaint.getTextSize()) / 2) - mPaint.ascent()), mPaint);
+            canvas.drawText(Candidates.get(3*(currentCandidatesPage-1)+2), 2 * getWidth() / 3 + ((getWidth() / 3) - a) / 2, (((getHeight() - mPaint.getTextSize()) / 2) - mPaint.ascent()), mPaint);
 
         }
 
