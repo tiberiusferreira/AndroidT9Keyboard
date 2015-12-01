@@ -163,20 +163,17 @@ public class CandidateView extends View {
             float x = me.getX();
             float y = me.getY();
             if (x > 0 && x <= getWidth() / 3 && Candidates.size()>0) {
-                System.out.println("Inputting "+ Candidates.get(0)+ "\n");
-                mService.InputText(Candidates.get(0));
+                mService.InputText(Candidates.get(3*(currentCandidatesPage-1)));
                 ClearCandidates();
 
                 return true;
             } else if (x > getWidth() / 3 && x < 2 * getWidth() / 3 && Candidates.size()>1) {
-                System.out.println("Inputting " + Candidates.get(1)+ "\n");
-                mService.InputText(Candidates.get(1));
+                mService.InputText(Candidates.get(3*(currentCandidatesPage-1)+1));
                 ClearCandidates();
 
                 return true;
             } else if (x > 2 * getWidth() / 3 && x < getWidth() && Candidates.size() > 2) {
-                System.out.println("Inputting "+ Candidates.get(2) + "\n");
-                mService.InputText(Candidates.get(2));
+                mService.InputText(Candidates.get(3*(currentCandidatesPage-1)+2));
                 ClearCandidates();
 
                 return true;
