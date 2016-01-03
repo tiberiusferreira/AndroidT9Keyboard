@@ -1,6 +1,5 @@
 package com.example.tiberio.project;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,7 +8,7 @@ import java.util.Comparator;
 /**
  * Created by tiberio on 30/11/2015.
  */
-public class SugestionsGenerator {
+public class SuggestionsGenerator {
     ArrayList<String> AllCombinations = new ArrayList<>();
     SearchTree tree = new SearchTree();
     ArrayList<String> Candidates = new ArrayList<>();
@@ -105,11 +104,13 @@ public class SugestionsGenerator {
     public ArrayList<String> GetBestCandidates(ArrayList<String> combinations,int depth){
         /*This method receives many character combinations, filters the words among them and
          * returns the 3 with highest frequency. If there are not even 3 words among the
-         * combinations it tries to get words that are similar to the combinations given. */
+         * combinations it tries to get words that are similar to the combinations given.
+         * The depth means how deep into the search tree should it look for similar words.
+         * Similar here means words that have the as prefix the characters typed by the user.
+         * So if TH is one combination typed by the user, depth 1 means THE is accepted as
+         * suggestion, and depth 3 means  THERE  is also accepted.*/
         FINAL.clear();
         ArrayList<String> BestCandidates = new ArrayList<>();
-        /*Stores candidates that are close to the strings inside combinations*/
-        ArrayList<String> CloseCandidates = new ArrayList<>();
 
         for(String currentString : combinations){
             double currentString_frequency;
@@ -122,6 +123,8 @@ public class SugestionsGenerator {
                 System.out.format("Found the word "+ currentString + " among the combinations\n");
             }
         }
+        /*If there are less than 3 candidates, mark them with the highest priority (frequency)
+        * so they are the first suggestions and search for similar candidates (with higher lenght)*/
         if(FINAL.size()<3){
             for(int i=0;i<FINAL.size();i++){
                 FINAL.get(i).frequency=Double.MAX_VALUE-i;
@@ -135,6 +138,7 @@ public class SugestionsGenerator {
                 }
             }
         }
+        //Sort candidates by frequency.
         Collections.sort(FINAL, FinalCandidatesComparator);
         System.out.println("FINAL IS THE FOLLOWING= ");
         for(int i=0;i<FINAL.size();i++){
