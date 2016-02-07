@@ -13,7 +13,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  */
 
 
-public class SearchTree {
+public class SearchTree implements DictionaryInterface{
     private Node root;
     ArrayList<String> WordSugestions = new ArrayList<>();
     SearchTree(){

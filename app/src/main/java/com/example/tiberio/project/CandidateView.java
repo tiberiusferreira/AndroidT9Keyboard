@@ -70,7 +70,7 @@ public class CandidateView extends View {
     public void updateSugestions(int typed_number){
         currentCandidatesPage=1;
         typedNumbersSTR=typedNumbersSTR.concat((Integer.toString(typed_number)));
-        Candidates=sugestionsgenerator.updateSugestions(typed_number);
+        Candidates=sugestionsgenerator.updateSuggestions(typed_number);
         /*If all candidates are empty strings, reset the numbers displayed.*/
         for (String str : Candidates){
             if(str.compareTo("")!=0){
@@ -102,7 +102,7 @@ public class CandidateView extends View {
         /*Clears the candidates, makes sure it's not empty
         * and triggers a redraw with invalidade.*/
         currentCandidatesPage=1;
-        sugestionsgenerator.clearSugestion();
+        sugestionsgenerator.clearSuggestion();
         typedNumbersSTR="";
         Candidates.clear();
         Candidates.add("");

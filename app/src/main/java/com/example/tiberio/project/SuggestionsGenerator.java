@@ -8,7 +8,7 @@ import java.util.Comparator;
 /**
  * Created by tiberio on 30/11/2015.
  */
-public class SuggestionsGenerator {
+public class SuggestionsGenerator implements SuggestionsInterface {
     ArrayList<String> AllCombinations = new ArrayList<>();
     SearchTree tree = new SearchTree();
     ArrayList<String> Candidates = new ArrayList<>();
@@ -27,14 +27,14 @@ public class SuggestionsGenerator {
         }
     };
 
-    public void clearSugestion(){
+    public void clearSuggestion(){
         AllCombinations.clear();
         Candidates.clear();
     }
     public void setDictionary(InputStream dictionary){
         tree.create_dictionary(dictionary);
     }
-    public ArrayList<String> updateSugestions(int typed_number){
+    public ArrayList<String> updateSuggestions(int typed_number){
         ArrayList<String> temp_newAllcombinations = new ArrayList<>();
         /*The key pressed can be from three to four characters. For each of those, combine
         * with all previously already registered combinations. For example, if 2 is typed,

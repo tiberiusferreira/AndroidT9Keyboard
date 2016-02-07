@@ -3,6 +3,8 @@
     android:horizontalGap="2%p"
     android:verticalGap="0px"
     android:keyHeight="60dp"
+    android:keyPreviewLayout="@layout/preview"
+
 
 
 
