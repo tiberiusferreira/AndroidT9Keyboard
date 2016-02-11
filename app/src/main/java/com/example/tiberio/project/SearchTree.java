@@ -93,6 +93,9 @@ public class SearchTree implements DictionaryInterface{
         {
             return WordSugestions;
         }
+        if(WordSugestions.size()>12){
+            return WordSugestions;
+        }
         /* A char is only part of the current string if I went down from it.
          * Also if the previous char was end of a word (prev_freq>0) it was
          * already printed and it's the char added. So don't add it and mark
@@ -182,7 +185,7 @@ public class SearchTree implements DictionaryInterface{
 
 
 
-    public int isDeadEnd_internal(Node node, String start, int current_word_pos){
+    private int isDeadEnd_internal(Node node, String start, int current_word_pos){
         /*Gets to the node in the tree which corresponds to the last char in the semi word given
         * (start) and from there calls another function to get all the words that have the given
         * semi word as beginning.*/
@@ -207,7 +210,7 @@ public class SearchTree implements DictionaryInterface{
         }
     }
 
-    public ArrayList<String> get_similar_word_internal_depth(Node node, String start, int current_word_pos,int depth){
+    private ArrayList<String> get_similar_word_internal_depth(Node node, String start, int current_word_pos,int depth){
         /*Gets to the node in the tree which corresponds to the last char in the semi word given
         * (start) and from there calls another function to get all the words that have the given
         * semi word as beginning.*/

@@ -59,7 +59,7 @@ public class SuggestionsGenerator implements SuggestionsInterface {
         }
         temp_newAllcombinations.clear();
         System.out.println("All combinations=" + AllCombinations.toString());
-        Candidates = GetBestCandidates(AllCombinations, 2);
+        Candidates = GetBestCandidates(AllCombinations, 5);
         return Candidates;
     }
 
@@ -110,6 +110,7 @@ public class SuggestionsGenerator implements SuggestionsInterface {
          * So if TH is one combination typed by the user, depth 1 means THE is accepted as
          * suggestion, and depth 3 means  THERE  is also accepted.*/
         FINAL.clear();
+
         ArrayList<String> BestCandidates = new ArrayList<>();
 
         for(String currentString : combinations){

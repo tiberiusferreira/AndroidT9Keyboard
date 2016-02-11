@@ -34,7 +34,7 @@ public class MyKeyboardView extends KeyboardView {
 
         List<Keyboard.Key> keys = getKeyboard().getKeys();
         for(Keyboard.Key key: keys) {
-            if(0==key.label.toString().compareTo(".,?")){
+            if(0==key.label.toString().compareTo(".,?!")){
                 canvas.drawText("1", key.x + (float) 0.8*(key.width), key.y + (float) 0.4*(key.height), paint);
             }else
             if(0==key.label.toString().compareTo("ABC")){

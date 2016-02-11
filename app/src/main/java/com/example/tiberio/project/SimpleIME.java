@@ -25,7 +25,6 @@ public class SimpleIME extends InputMethodService
     long seconds = System.currentTimeMillis();
     long last_input_seconds = System.currentTimeMillis();
     int last_char=0;
-    int number_since_last_input=-1;
 
     /*These methods are necessary in order to implement MyKeyboardView.OnKeyboardActionListener */
     @Override
@@ -146,7 +145,7 @@ public class SimpleIME extends InputMethodService
                     return;
                 }
                 if ((!Character.isDigit(primaryCode))) { //if is not digit, just display it.
-                    if((last_char==46 || last_char==44 || last_char==63) && (System.currentTimeMillis()-last_input_seconds)<1000){
+                    if((last_char==46 || last_char==44 || last_char==63 || last_char==33) && (System.currentTimeMillis()-last_input_seconds)<1000){
                         inputconnection.deleteSurroundingText(1, 0);
                     }
                     last_char=primaryCode;

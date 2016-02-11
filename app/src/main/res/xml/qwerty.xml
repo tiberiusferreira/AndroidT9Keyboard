@@ -10,7 +10,7 @@
 
     >
     <Row>
-        <Key android:codes="46,44,63" android:keyLabel=".,?"     android:keyWidth="33%p" android:keyEdgeFlags="left"/>
+        <Key android:codes="46,44,63,33" android:keyLabel=".,?!"     android:keyWidth="33%p" android:keyEdgeFlags="left"/>
         <Key android:codes="50" android:keyLabel="ABC" android:keyWidth="33%p" />
         <Key android:codes="51" android:keyLabel="DEF" android:keyWidth="33%p" android:keyEdgeFlags="right"/>
 
